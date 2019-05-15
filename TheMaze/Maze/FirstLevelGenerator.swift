@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class FirstLevelStrategy : GenerateMazeStrategy {
-    var view : UIView? = nil
+    var view : UIViewController? = nil
     
     public func generate() {
         
