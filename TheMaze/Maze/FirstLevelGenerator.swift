@@ -7,10 +7,16 @@
 //
 
 import Foundation
+import UIKit
 
-
-class FirstLevelGenerator : IGenerateMaze {
+class FirstLevelStrategy : GenerateMazeStrategy {
+    var view : UIView
+    
+    init(with view: UIView) {
+        self.view = view
+    }
+    
     public func generate() {
-        // Génère le niveau 1
+         
     }
 }

@@ -7,15 +7,19 @@
 //
 
 import Foundation
+import UIKit
 
-protocol IGenerateMaze {
+protocol GenerateMazeStrategy {
+    // The view in which walls must be generated
+    var view : UIView { get set }
+    // generate walls in a view
     func generate() -> Void
 }
 
 class Generator {
-    let generatorStrategy : IGenerateMaze
+    let generatorStrategy : GenerateMazeStrategy
     
-    init(with generator: IGenerateMaze) {
+    init(with generator: GenerateMazeStrategy, in view: UIView) {
         generatorStrategy = generator
     }
     
