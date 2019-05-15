@@ -12,11 +12,7 @@ import UIKit
 class FirstLevelStrategy : GenerateMazeStrategy {
     var view : UIView
     
-    init(with view: UIView) {
-        self.view = view
-    }
-    
     public func generate() {
-         
+        
     }
 }
