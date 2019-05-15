@@ -11,16 +11,17 @@ import UIKit
 
 protocol GenerateMazeStrategy {
     // The view in which walls must be generated
-    var view : UIView { get set }
+    var view : UIView? { get set }
     // generate walls in a view
     func generate() -> Void
 }
 
 class Generator {
-    let generatorStrategy : GenerateMazeStrategy
+    var generatorStrategy : GenerateMazeStrategy
     
     init(with generator: GenerateMazeStrategy, in view: UIView) {
         generatorStrategy = generator
+        generatorStrategy.view = view
     }
     
     public func generate() {
