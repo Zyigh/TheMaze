@@ -10,9 +10,17 @@ import Foundation
 import UIKit
 
 class FirstLevelStrategy : GenerateMazeStrategy {
-    var view : UIViewController? = nil
+    var view : UIViewControllerWithAnimation? = nil
+    var barriers = [UIView]()
     
     public func generate() {
+        guard let viewController = view else { return }
+
+        barriers.append(UIView(frame: CGRect(x: 0, y: 0, width: 150, height: viewController.view.frame.height)))
+        barriers.append(UIView(frame: CGRect(x: viewController.view.frame.width - 150, y: 0, width: 150, height: viewController.view.frame.height)))
         
+        for barrier in barriers {
+            viewController.view.addSubview(barrier)
+        }
     }
 }

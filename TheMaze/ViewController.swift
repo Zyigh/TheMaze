@@ -9,6 +9,13 @@
 import UIKit
 import CoreMotion
 
+protocol WithAnimation {
+    var animator: UIDynamicAnimator { get set }
+    var collision: UICollisionBehavior { get set }
+}
+
+typealias UIViewControllerWithAnimation = UIViewController & WithAnimation
+
 class ViewController: UIViewController {
     
     var animator : UIDynamicAnimator!
