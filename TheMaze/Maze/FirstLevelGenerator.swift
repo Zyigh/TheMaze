@@ -12,6 +12,7 @@ import UIKit
 class FirstLevelStrategy : GenerateMazeStrategy {
     var view : UIViewControllerWithAnimation? = nil
     var barriers = [UIView]()
+    var startBall: CGPoint!
     
     public func generate() {
         guard let viewController = view else { return }
@@ -21,6 +22,7 @@ class FirstLevelStrategy : GenerateMazeStrategy {
         
         for barrier in barriers {
             viewController.view.addSubview(barrier)
+            barrier.backgroundColor = UIColor.red
         }
     }
 }

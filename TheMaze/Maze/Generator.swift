@@ -16,6 +16,9 @@ protocol GenerateMazeStrategy {
     // Array of barriers
     var barriers: [UIView] { get set }
     
+    // Set a coord for ball
+    var startBall: CGPoint! { get set }
+    
     // generate walls in a view
     func generate() -> Void
 }
@@ -26,6 +29,7 @@ class Generator {
     init(with generator: GenerateMazeStrategy, in view: UIViewControllerWithAnimation) {
         generatorStrategy = generator
         generatorStrategy.view = view
+        generatorStrategy.startBall = CGPoint(x: view.view.frame.midX, y: view.view.frame.height - 40)
     }
     
     public func generate() {
@@ -45,6 +49,5 @@ class Generator {
             
             index = index + 1
         }
-        
     }
 }
