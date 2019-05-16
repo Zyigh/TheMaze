@@ -31,5 +31,7 @@ class APIConnexion {
         }
     }
     
-    public func update
+    public func update(group: Group, completion: @escaping (Group? , Network.NetworkError?) -> Void) {
+        
+    }
 }
