@@ -12,12 +12,13 @@ import UIKit
 protocol GenerateMazeStrategy {
     // The view in which walls must be generated
     var view : UIViewControllerWithAnimation? { get set }
-    
     // Array of barriers
     var barriers: [UIView] { get set }
-    
     // Set a coord for ball
     var startBall: CGPoint! { get set }
+    // Destination
+    var target: CGPoint! { get set }
+    
     
     // generate walls in a view
     func generate() -> Void
@@ -29,24 +30,25 @@ class Generator {
     init(with generator: GenerateMazeStrategy, in view: UIViewControllerWithAnimation) {
         generatorStrategy = generator
         generatorStrategy.view = view
-        generatorStrategy.startBall = CGPoint(x: view.view.frame.midX, y: view.view.frame.height - 40)
     }
     
     public func generate() {
         var index = 0
         generatorStrategy.generate()
         
-        guard let viewController = generatorStrategy.view?.view else { return }
+        guard let viewController = generatorStrategy.view else { return }
         
-        generatorStrategy.view?.animator = UIDynamicAnimator(referenceView: viewController)
-        generatorStrategy.view?.collision.collisionDelegate = self as? UICollisionBehaviorDelegate
         
         for barrier in generatorStrategy.barriers {
-            generatorStrategy.view?.collision = UICollisionBehavior(items: [barrier])
-            generatorStrategy.view?.collision.addBoundary(withIdentifier: "barrier_\(index)" as NSString, for: UIBezierPath(rect: barrier.frame))
-            
-            generatorStrategy.view?.animator.addBehavior((generatorStrategy.view?.collision)!)
-            
+            viewController.collision.addItem(barrier)
+            viewController
+                .collision
+                .addBoundary(
+                    withIdentifier: "barrier_\(index)" as NSString,
+                    for: UIBezierPath(
+                        rect: barrier.frame
+                    )
+                )
             index = index + 1
         }
     }

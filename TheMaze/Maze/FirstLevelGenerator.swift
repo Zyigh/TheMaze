@@ -13,9 +13,12 @@ class FirstLevelStrategy : GenerateMazeStrategy {
     var view : UIViewControllerWithAnimation? = nil
     var barriers = [UIView]()
     var startBall: CGPoint!
+    var target: CGPoint!
     
     public func generate() {
         guard let viewController = view else { return }
+        startBall = CGPoint(x: viewController.view.frame.midX, y: viewController.view.frame.height - 40)
+        target = CGPoint(x: viewController.view.frame.midX, y: 40)
 
         barriers.append(UIView(frame: CGRect(x: 0, y: 0, width: 150, height: viewController.view.frame.height)))
         barriers.append(UIView(frame: CGRect(x: viewController.view.frame.width - 150, y: 0, width: 150, height: viewController.view.frame.height)))
